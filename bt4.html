@@ -1,0 +1,111 @@
+<h2>Basic Info</h2>
+<form>
+    <table border="0" cellpadding="5">
+        <tr>
+            <td><label for="empID">Employee ID:</label></td>
+            <td><input type="text" id="empID" name="empID"></td>
+        </tr>
+        <tr>
+            <td><label for="lastName">Last Name:</label></td>
+            <td><input type="text" id="lastName" name="lastName"></td>
+        </tr>
+        <tr>
+            <td><label for="firstName">First Name:</label></td>
+            <td><input type="text" id="firstName" name="firstName"></td>
+        </tr>
+        <tr>
+            <td><label>Gender:</label></td>
+            <td>
+                <input type="radio" name="gender" value="Male"> Male
+                <input type="radio" name="gender" value="Female"> Female
+                <input type="radio" name="gender" value="XXX"> XXX
+                <input type="radio" name="gender" value="ZZZ"> ZZZ
+            </td>
+        </tr>
+        <tr>
+            <td><label for="title">Title:</label></td>
+            <td><input type="text" id="title" name="title"></td>
+        </tr>
+        <tr>
+            <td><label for="suffix">Suffix:</label></td>
+            <td><input type="text" id="suffix" name="suffix"></td>
+        </tr>
+        <tr>
+            <td><label for="birthDate">Birth Date:</label></td>
+            <td><input type="datetime-local" id="birthDate" name="birthDate"></td>
+        </tr>
+        <tr>
+            <td><label for="hireDate">Hire Date:</label></td>
+            <td><input type="datetime-local" id="hireDate" name="hireDate"></td>
+        </tr>
+        <tr>
+            <td><label for="ssn">SSN #:</label></td>
+            <td><input type="text" id="ssn" name="ssn"></td>
+        </tr>
+        <tr>
+            <td><label for="reportsTo">Reports To:</label></td>
+            <td>
+                <select id="reportsTo" name="reportsTo">
+          <option>Buchanan</option>
+          <option>Fuller</option>
+        </select>
+            </td>
+        </tr>
+    </table>
+
+    <h2>Contact Info</h2>
+    <table border="0" cellpadding="5">
+        <tr>
+            <td><label for="email">Email:</label></td>
+            <td><input type="email" id="email" name="email"></td>
+        </tr>
+        <tr>
+            <td><label for="address">Address:</label></td>
+            <td><input type="text" id="address" name="address"></td>
+        </tr>
+        <tr>
+            <td><label for="city">City:</label></td>
+            <td><input type="text" id="city" name="city"></td>
+        </tr>
+        <tr>
+            <td><label for="region">Region:</label></td>
+            <td><input type="text" id="region" name="region"></td>
+        </tr>
+        <tr>
+            <td><label for="postal">Postal Code:</label></td>
+            <td><input type="text" id="postal" name="postal"></td>
+        </tr>
+        <tr>
+            <td><label for="country">Country:</label></td>
+            <td>
+                <select id="country" name="country">
+          <option>Russian Federation</option>
+          <option>Vietnam</option>
+          <option>USA</option>
+        </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="phone">US Home Phone:</label></td>
+            <td><input type="tel" id="phone" name="phone"></td>
+        </tr>
+        <tr>
+            <td><label for="photo">Photo:</label></td>
+            <td><input type="text" id="photo" name="photo" value="EmpID9.bmp"></td>
+        </tr>
+    </table>
+
+    <h2>Optional Info</h2>
+    <table border="0" cellpadding="5">
+        <tr>
+            <td><label for="notes">Notes:</label></td>
+            <td><textarea id="notes" name="notes" rows="5" cols="50">
+Anne has a BA degree in English from St. Lawrence College.
+She is fluent in French and German ZZZ.
+      </textarea></td>
+        </tr>
+    </table>
+
+    <br>
+    <button type="submit">Submit</button>
+</form>
