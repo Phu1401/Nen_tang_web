@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sinh viên</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        
+        h2 {
+            background-color: #2576ce;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1.5px solid #000000;
+        }
+        
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border: 1.5px solid #000000;
+            border-radius: 15px;
+            max-width: 500px;
+            margin-bottom: 30px;
+            color: #000000
+        }
+        
+        form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="date"],
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1.5px solid #000000;
+            border-radius: 10px;
+        }
+        
+        form textarea {
+            resize: vertical;
+        }
+        
+        form button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #149933;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        
+        form button:hover {
+            background-color: #0c5f1e;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgb(255, 255, 255);
+            color: #000000
+        }
+        
+        th,
+        td {
+            border: 1.5px solid #000000;
+            padding: 13px;
+            text-align: center;
+        }
+        
+        thead {
+            background-color: #0e78e2;
+            color: white;
+        }
+        
+        tbody tr:hover {
+            background-color: #c3bebe;
+            text-decoration: underline;
+        }
+        
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>📝 Thêm Sinh Viên</h2>
+    <form>
+        <label for="maSV">Mã sinh viên:</label>
+        <input type="text" id="maSV" name="maSV" required>
+
+        <label for="hoTen">Họ và tên:</label>
+        <input type="text" id="hoTen" name="hoTen" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="ngaySinh">Ngày sinh:</label>
+        <input type="date" id="ngaySinh" name="ngaySinh">
+
+        <label>Giới tính:</label>
+        <input type="radio" id="nam" name="gioiTinh" value="Nam">
+        <label for="nam">Nam</label>
+        <input type="radio" id="nu" name="gioiTinh" value="Nữ">
+        <label for="nu">Nữ</label>
+
+        <label for="ghiChu">Ghi chú:</label>
+        <textarea id="ghiChu" name="ghiChu" rows="3" cols="40"></textarea>
+
+        <button type="submit">Thêm sinh viên</button>
+    </form>
+
+    <h2>📋 Danh Sách Sinh Viên</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã SV</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Giới tính</th>
+                <th>Ngày sinh</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>SV001</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@gmail.com</td>
+                <td>Nam</td>
+                <td>2000-01-01</td>
+                <td><a href="#">Sửa</a> | <a href="#">Xoá</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>SV002</td>
+                <td>Vũ Thị B</td>
+                <td>b@gmail.com</td>
+                <td>Nữ</td>
+                <td>2001-05-15</td>
+                <td><a href="#">Sửa</a> | <a href="#">Xoá</a></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>SV003</td>
+                <td>Lê Văn C</td>
+                <td>c@gmail.com</td>
+                <td>Nam</td>
+                <td>1999-12-20</td>
+                <td><a href="#">Sửa</a> | <a href="#">Xoá</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
