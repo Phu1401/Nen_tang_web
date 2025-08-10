@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sinh viên - Flexbox</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .navbar {
+            background-color: #2576ce;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            padding: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar:hover {
+            background-color: #1a5ea8;
+            transform: scale(1.01);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        h2 {
+            background-color: #2576ce;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1.5px solid #000000;
+            transition: all 0.3s ease;
+        }
+        
+        h2:hover {
+            background-color: #1a5ea8;
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border: 1.5px solid #000000;
+            border-radius: 15px;
+            color: #000000;
+            flex: 1;
+            min-width: 300px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-container:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .table-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1.5px solid #000000;
+            flex: 1;
+            min-width: 300px;
+            overflow-x: auto;
+            transition: all 0.3s ease;
+        }
+        
+        .table-container:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="date"],
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1.5px solid #000000;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        form input[type="text"]:hover,
+        form input[type="email"]:hover,
+        form input[type="date"]:hover,
+        form textarea:hover {
+            background-color: #f0f8ff;
+            border-color: #2576ce;
+        }
+        
+        form textarea {
+            resize: vertical;
+        }
+        
+        input[type="radio"]:hover+label {
+            color: #2576ce;
+            text-shadow: 0 0 2px rgba(37, 118, 206, 0.3);
+        }
+        
+        .btn-submit {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #149933;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+        
+        .btn-submit:hover {
+            background-color: #0c5f1e;
+            text-decoration: underline;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #000000;
+            min-width: 600px;
+        }
+        
+        th,
+        td {
+            border: 1.5px solid #000000;
+            padding: 13px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        
+        thead {
+            background-color: #0e78e2;
+            color: white;
+        }
+        
+        thead tr:hover {
+            background-color: #0a66c2 !important;
+        }
+        
+        tbody tr:hover {
+            background-color: #e6f2ff !important;
+            transform: scale(1.01);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .action-link {
+            color: #007bff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .action-link:hover {
+            background-color: #007bff;
+            color: white !important;
+            text-decoration: none;
+            padding: 2px 5px;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.4s ease;
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background-color: #28a745;
+        }
+        
+        .notification.error {
+            background-color: #dc3545;
+        }
+        
+        .notification.info {
+            background-color: #17a2b8;
+        }
+        
+        .form-error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 4px;
+            display: none;
+        }
+        
+        .btn-update {
+            background-color: #ffc107 !important;
+            color: #212529 !important;
+        }
+        
+        .btn-update:hover {
+            background-color: #e0a800 !important;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">Hệ thống quản lý sinh viên</div>
+
+    <div id="notification" class="notification"></div>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>📝 Thêm Sinh Viên</h2>
+            <form id="studentForm">
+                <label for="maSV">Mã sinh viên: <span style="color:red">*</span></label>
+                <input type="text" id="maSV" name="maSV" required>
+                <div id="maSVError" class="form-error">Mã sinh viên không được để trống</div>
+
+                <label for="hoTen">Họ và tên: <span style="color:red">*</span></label>
+                <input type="text" id="hoTen" name="hoTen" required>
+                <div id="hoTenError" class="form-error">Họ tên phải có ít nhất 3 ký tự</div>
+
+                <label for="email">Email: <span style="color:red">*</span></label>
+                <input type="email" id="email" name="email" required>
+                <div id="emailError" class="form-error">Email không hợp lệ</div>
+
+                <label for="ngaySinh">Ngày sinh:</label>
+                <input type="date" id="ngaySinh" name="ngaySinh">
+
+                <label>Giới tính: <span style="color:red">*</span></label>
+                <div>
+                    <input type="radio" id="nam" name="gioiTinh" value="Nam" required>
+                    <label for="nam">Nam</label>
+                    <input type="radio" id="nu" name="gioiTinh" value="Nữ">
+                    <label for="nu">Nữ</label>
+                </div>
+                <div id="gioiTinhError" class="form-error">Vui lòng chọn giới tính</div>
+
+                <label for="ghiChu">Ghi chú:</label>
+                <textarea id="ghiChu" name="ghiChu" rows="3" cols="40"></textarea>
+
+                <button type="submit" class="btn-submit" id="submitBtn">Thêm sinh viên</button>
+            </form>
+        </div>
+        <div class="table-container">
+            <h2>📋 Danh Sách Sinh Viên</h2>
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã SV</th>
+                        <th>Họ tên</th>
+                        <th>Email</th>
+                        <th>Giới tính</th>
+                        <th>Ngày sinh</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>SV001</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>a@gmail.com</td>
+                        <td>Nam</td>
+                        <td>2000-01-01</td>
+                        <td><a href="#" class="action-link edit-btn">Sửa</a> | <a href="#" class="action-link delete-btn">Xoá</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>SV002</td>
+                        <td>Vũ Thị B</td>
+                        <td>b@gmail.com</td>
+                        <td>Nữ</td>
+                        <td>2001-05-15</td>
+                        <td><a href="#" class="action-link edit-btn">Sửa</a> | <a href="#" class="action-link delete-btn">Xoá</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>SV003</td>
+                        <td>Lê Văn C</td>
+                        <td>c@gmail.com</td>
+                        <td>Nam</td>
+                        <td>1999-12-20</td>
+                        <td><a href="#" class="action-link edit-btn">Sửa</a> | <a href="#" class="action-link delete-btn">Xoá</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let isEditing = false;
+        let editingRow = null;
+        let studentData = [{
+            id: 1,
+            maSV: "SV001",
+            hoTen: "Nguyễn Văn A",
+            email: "a@gmail.com",
+            gioiTinh: "Nam",
+            ngaySinh: "2000-01-01",
+            ghiChu: ""
+        }, {
+            id: 2,
+            maSV: "SV002",
+            hoTen: "Vũ Thị B",
+            email: "b@gmail.com",
+            gioiTinh: "Nữ",
+            ngaySinh: "2001-05-15",
+            ghiChu: ""
+        }, {
+            id: 3,
+            maSV: "SV003",
+            hoTen: "Lê Văn C",
+            email: "c@gmail.com",
+            gioiTinh: "Nam",
+            ngaySinh: "1999-12-20",
+            ghiChu: ""
+        }];
+
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = 'notification show ' + type;
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.className = 'notification';
+                }, 300);
+            }, 3000);
+        }
+
+        function resetForm() {
+            document.getElementById('studentForm').reset();
+            document.querySelectorAll('.form-error').forEach(el => el.style.display = 'none');
+            document.getElementById('submitBtn').textContent = 'Thêm sinh viên';
+            document.getElementById('submitBtn').className = 'btn-submit';
+            isEditing = false;
+            editingRow = null;
+        }
+
+        function validateForm() {
+            let isValid = true;
+            const maSV = document.getElementById('maSV').value.trim();
+            const hoTen = document.getElementById('hoTen').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const gioiTinh = document.querySelector('input[name="gioiTinh"]:checked');
+            document.querySelectorAll('.form-error').forEach(el => el.style.display = 'none');
+            if (!maSV) {
+                document.getElementById('maSVError').style.display = 'block';
+                isValid = false;
+            }
+            if (!hoTen || hoTen.length < 3) {
+                document.getElementById('hoTenError').style.display = 'block';
+                isValid = false;
+            }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+            if (!gioiTinh) {
+                document.getElementById('gioiTinhError').style.display = 'block';
+                isValid = false;
+            }
+            return isValid;
+        }
+
+        function addStudent() {
+            const maSV = document.getElementById('maSV').value.trim();
+            const hoTen = document.getElementById('hoTen').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const ngaySinh = document.getElementById('ngaySinh').value;
+            const gioiTinh = document.querySelector('input[name="gioiTinh"]:checked').value;
+            const ghiChu = document.getElementById('ghiChu').value;
+            const newId = studentData.length > 0 ? Math.max(...studentData.map(s => s.id)) + 1 : 1;
+            const newStudent = {
+                id: newId,
+                maSV,
+                hoTen,
+                email,
+                ngaySinh,
+                gioiTinh,
+                ghiChu
+            };
+            studentData.push(newStudent);
+            showNotification('Thêm sinh viên thành công!', 'success');
+            resetForm();
+            updateTable();
+        }
+
+        function updateStudent() {
+            const maSV = document.getElementById('maSV').value.trim();
+            const hoTen = document.getElementById('hoTen').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const ngaySinh = document.getElementById('ngaySinh').value;
+            const gioiTinh = document.querySelector('input[name="gioiTinh"]:checked').value;
+            const ghiChu = document.getElementById('ghiChu').value;
+            const studentIndex = studentData.findIndex(s => s.id === editingRow.id);
+            if (studentIndex !== -1) {
+                studentData[studentIndex] = {
+                    ...editingRow,
+                    maSV,
+                    hoTen,
+                    email,
+                    ngaySinh,
+                    gioiTinh,
+                    ghiChu
+                };
+            }
+            showNotification('Cập nhật sinh viên thành công!', 'success');
+            resetForm();
+            updateTable();
+        }
+
+        function deleteStudent(id) {
+            studentData = studentData.filter(student => student.id !== id);
+            showNotification('Xóa sinh viên thành công!', 'success');
+            updateTable();
+        }
+
+        function editStudent(id) {
+            const student = studentData.find(s => s.id === id);
+            if (!student) return;
+            document.getElementById('maSV').value = student.maSV;
+            document.getElementById('hoTen').value = student.hoTen;
+            document.getElementById('email').value = student.email;
+            document.getElementById('ngaySinh').value = student.ngaySinh || '';
+            document.getElementById('ghiChu').value = student.ghiChu || '';
+            if (student.gioiTinh === 'Nam') {
+                document.getElementById('nam').checked = true;
+            } else if (student.gioiTinh === 'Nữ') {
+                document.getElementById('nu').checked = true;
+            }
+            document.getElementById('submitBtn').textContent = 'Cập nhật';
+            document.getElementById('submitBtn').classList.add('btn-update');
+            isEditing = true;
+            editingRow = student;
+        }
+
+        function updateTable() {
+            const tableBody = document.querySelector('#studentTable tbody');
+            tableBody.innerHTML = '';
+
+            studentData.forEach((student, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${student.maSV}</td>
+                    <td>${student.hoTen}</td>
+                    <td>${student.email}</td>
+                    <td>${student.gioiTinh}</td>
+                    <td>${student.ngaySinh || ''}</td>
+                    <td>
+                        <a href="#" class="action-link edit-btn" data-id="${student.id}">Sửa</a> | 
+                        <a href="#" class="action-link delete-btn" data-id="${student.id}">Xoá</a>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        document.getElementById('studentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (!validateForm()) {
+                showNotification('Vui lòng kiểm tra lại thông tin!', 'error');
+                return;
+            }
+
+            if (isEditing) {
+                updateStudent();
+            } else {
+                addStudent();
+            }
+        });
+        document.getElementById('studentTable').addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-btn')) {
+                e.preventDefault();
+                const id = parseInt(e.target.getAttribute('data-id'));
+                if (confirm('Bạn có chắc chắn muốn xóa sinh viên này?')) {
+                    deleteStudent(id);
+                }
+            }
+            if (e.target.classList.contains('edit-btn')) {
+                e.preventDefault();
+                const id = parseInt(e.target.getAttribute('data-id'));
+                editStudent(id);
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTable();
+        });
+    </script>
+</body>
+
+</html>
